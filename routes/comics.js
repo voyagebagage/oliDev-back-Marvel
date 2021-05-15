@@ -9,7 +9,7 @@ router.get("/comics", async (req, res) => {
     const skip = req.query.skip || 0;
     const title = req.query.title || "";
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}`
+      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&limit=${limit}&skip=${skip}&title=${title}`
     );
     res.status(200).json(response.data);
   } catch (error) {

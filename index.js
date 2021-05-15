@@ -21,7 +21,7 @@ app.use(comicsRoutes);
 
 //____H_O_M_E___Route__\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 app.get("/", (req, res) => {
-  res.status(200).json({ message: "Welcome" });
+  res.status(200).json({ message: "Welcome to my Marvel API" });
 });
 ///////////>>>>>>>>>>>>>><<<<<<<<<<<<<<<////////////
 
