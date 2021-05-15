@@ -1,13 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const formidable = require("express-formidable");
-
 const cors = require("cors");
 //______________________________________________\\
 
 const app = express();
-app.use(cors());
 app.use(formidable());
+app.use(cors());
 
 //////_C.O.N.F.I.G_\\\\\\
 
@@ -22,7 +21,7 @@ app.use(comicsRoutes);
 
 //____H_O_M_E___Route__\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 app.get("/", (req, res) => {
-  console.log("W E L C O M E");
+  res.status(200).json({ message: "Welcome" });
 });
 ///////////>>>>>>>>>>>>>><<<<<<<<<<<<<<<////////////
 
