@@ -4,10 +4,10 @@ const axios = require("axios");
 
 router.get("/comics", async (res, req) => {
   try {
-    console.log("welcom 4");
+    console.log("C O M I C S");
     const limit = req.query.limit || 100;
     const skip = req.query.skip || 0;
-    const { title } = req.query;
+    const title = req.query.title || "";
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}`
     );
@@ -19,7 +19,7 @@ router.get("/comics", async (res, req) => {
 
 router.get("/comics/:characterId", async (req, res) => {
   try {
-    console.log("W E L C O M E 3");
+    console.log("PARAMS CHARACTER");
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/comics/${req.params.characterId}?apiKey=${process.env.API_KEY}`
     );
