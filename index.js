@@ -14,8 +14,10 @@ app.use(formidable());
 //______________________________________________\\
 //-----//_I_M_P_O_R_T_-__R_O_U_T_E_S______\\\\\\\\\\\\\\\\\\\\
 const charactersRoutes = require("./routes/characters");
+const comicsRoutes = require("./routes/comics");
 // //-\\
 app.use(charactersRoutes);
+app.use(comicsRoutes);
 //_______________________________________________\\
 
 //____H_O_M_E___Route__\\\\\\\\\\\\\\\\\\\\\\\\\\\\
