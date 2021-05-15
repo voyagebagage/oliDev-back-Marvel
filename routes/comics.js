@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-router.get("/comics", async (res, req) => {
+router.get("/comics", async (req, res) => {
   try {
     console.log("C O M I C S");
     const limit = req.query.limit || 100;
