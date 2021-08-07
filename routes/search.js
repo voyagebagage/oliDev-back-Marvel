@@ -8,7 +8,7 @@ router.get("/search-character", async (req, res) => {
     const skip = req.query.skip;
     const name = req.query.name;
 
-    console.log("search | | | |");
+    console.log("search | |CHARACTER | |");
 
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${name}&skip=${skip}&limit=${limit}`
@@ -20,5 +20,25 @@ router.get("/search-character", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
+router.get("/search-comic", async (req, res) => {
+  try {
+    const limit = req.query.limit || 100;
+    const skip = req.query.skip;
+    const title = req.query.title;
+
+    console.log("search | |COMIC | |");
+
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&title=${title}&skip=${skip}&limit=${limit}`
+    );
+
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.log("search marvel issue");
+    res.status(400).json({ error: error.message });
+  }
+});
+
 //E_X_P_O_R_T\\
 module.exports = router;
