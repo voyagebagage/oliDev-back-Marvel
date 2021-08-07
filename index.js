@@ -14,9 +14,11 @@ app.use(cors());
 //-----//_I_M_P_O_R_T_-__R_O_U_T_E_S______\\\\\\\\\\\\\\\\\\\\
 const charactersRoutes = require("./routes/characters");
 const comicsRoutes = require("./routes/comics");
+const searchRoutes = require("./routes/search");
 // //-\\
 app.use(charactersRoutes);
 app.use(comicsRoutes);
+app.use(searchRoutes);
 //_______________________________________________\\
 
 //____H_O_M_E___Route__\\\\\\\\\\\\\\\\\\\\\\\\\\\\
