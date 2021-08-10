@@ -10,7 +10,7 @@ app.use(formidable());
 app.use(cors());
 
 //////_C.O.N.F.I.G_\\\\\\
-mongoose.connect("mongodb://localhost:27017/marvel", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   //   useFindAndModify: false,
