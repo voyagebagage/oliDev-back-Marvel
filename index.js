@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const formidable = require("express-formidable");
+const mongoose = require("mongoose");
 const cors = require("cors");
 //______________________________________________\\
 
@@ -9,16 +10,23 @@ app.use(formidable());
 app.use(cors());
 
 //////_C.O.N.F.I.G_\\\\\\
-
+mongoose.connect("mongodb://localhost:27017/marvel", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  //   useFindAndModify: false,
+  useCreateIndex: true,
+});
 //______________________________________________\\
 //-----//_I_M_P_O_R_T_-__R_O_U_T_E_S______\\\\\\\\\\\\\\\\\\\\
 const charactersRoutes = require("./routes/characters");
 const comicsRoutes = require("./routes/comics");
 const searchRoutes = require("./routes/search");
+const userRoutes = require("./routes/user");
 // //-\\
 app.use(charactersRoutes);
 app.use(comicsRoutes);
 app.use(searchRoutes);
+app.use(userRoutes);
 //_______________________________________________\\
 
 //____H_O_M_E___Route__\\\\\\\\\\\\\\\\\\\\\\\\\\\\
