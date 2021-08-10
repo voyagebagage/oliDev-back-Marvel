@@ -9,6 +9,8 @@ const User = require("../model/User");
 
 router.post("/user/create", async (req, res) => {
   try {
+    console.log("USER CREATE");
+
     const { username, email, password } = req.fields;
     const salt = uid2(16);
     const hash = SHA256(password + salt).toString(encBase64);
