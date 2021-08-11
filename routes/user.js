@@ -59,16 +59,10 @@ router.post("/user/find", async (req, res) => {
       username: firstField,
     });
     // console.log(inUserEmail);
-    console.log(inUserEmail);
-    console.log(inUserUsername);
+
     if (firstField && password) {
       console.log(inUserEmail);
       console.log(inUserUsername);
-      inUserEmail
-        ? (inUser = inUserEmail)
-        : inUserUsername
-        ? (inUser = inUserUsername)
-        : null;
       if (inUserEmail || inUserUsername) {
         console.log(inUserEmail);
         console.log(inUserUsername);
