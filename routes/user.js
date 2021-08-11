@@ -52,15 +52,27 @@ router.post("/user/find", async (req, res) => {
   try {
     console.log("coucou");
 
-    const { username, email, password } = req.fields;
-    const inUserEmail = await User.findOne({ email: email });
+    const { firstField, password } = req.fields;
+
+    const inUserEmail = await User.findOne({ email: firstField });
     const inUserUsername = await User.findOne({
-      username: username,
+      username: firstField,
     });
     // console.log(inUserEmail);
-
-    if ((username && password) || (email && password)) {
+    console.log(inUserEmail);
+    console.log(inUserUsername);
+    if (firstField && password) {
+      console.log(inUserEmail);
+      console.log(inUserUsername);
+      inUserEmail
+        ? (inUser = inUserEmail)
+        : inUserUsername
+        ? (inUser = inUserUsername)
+        : null;
       if (inUserEmail || inUserUsername) {
+        console.log(inUserEmail);
+        console.log(inUserUsername);
+
         const inUser = inUserEmail || inUserUsername;
         console.log(inUser);
         const newHash = SHA256(password + inUser.salt).toString(encBase64);
