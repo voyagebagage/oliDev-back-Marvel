@@ -26,6 +26,7 @@ router.post("/user/create", async (req, res) => {
             email: email,
             password: password,
             hash: hash,
+            salt: salt,
             token: token,
           });
           await newUser.save();
@@ -49,26 +50,27 @@ router.post("/user/create", async (req, res) => {
 
 router.post("/user/find", async (req, res) => {
   try {
+    console.log("coucou");
+
     const { username, email, password } = req.fields;
     const inUserEmail = await User.findOne({ email: email });
-    const inUserUsername = await User.findOne({ username: username });
+    const inUserUsername = await User.findOne({
+      username: username,
+    });
+    // console.log(inUserEmail);
 
-    if ((username || email) && password) {
+    if ((username && password) || (email && password)) {
       if (inUserEmail || inUserUsername) {
-        const newHash = SHA256(inUser.salt + password).toString(encBase64);
-        if (inUserEmail.hash === newHash || inUserUsername.hash === newHash) {
-          res.status(200).json(
-            {
-              _id: inUserEmail._id,
-              token: inUserEmail.token,
-              username: inUserEmail.username,
-            }
-            // || {
-            //   _id: inUserUsername._id,
-            //   token: inUserUsername.token,
-            //   username: inUserUsername.username,
-            // }
-          );
+        const inUser = inUserEmail || inUserUsername;
+        console.log(inUser);
+        const newHash = SHA256(password + inUser.salt).toString(encBase64);
+        console.log(newHash);
+        if (inUser.hash === newHash) {
+          res.status(200).json({
+            _id: inUser._id,
+            token: inUser.token,
+            username: inUser.username,
+          });
         } else {
           res.status(402).json({ message: "Password incorrect" });
         }
@@ -82,4 +84,5 @@ router.post("/user/find", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
 module.exports = router;
