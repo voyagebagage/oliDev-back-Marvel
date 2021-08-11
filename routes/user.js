@@ -46,7 +46,6 @@ router.post("/user/create", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-module.exports = router;
 
 router.post("/user/find", async (req, res) => {
   try {
@@ -83,3 +82,4 @@ router.post("/user/find", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+module.exports = router;
